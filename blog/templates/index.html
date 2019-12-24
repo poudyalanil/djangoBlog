@@ -26,27 +26,27 @@
 <div class="container">
     <!-- Portfolio Item Heading -->
     <h1 class="my-4">
-        Trending Blogs
+        Latest Blog
         <small style="font-size: 20px; color:grey;">{{month}}</small>
     </h1>
 
     <!-- Portfolio Item Row -->
+    {% for blog in posts%}
     <div class="row">
         <div class="col-md-8">
-            <img class="img-fluid" src="http://placehold.it/750x500" alt="" />
+            <img class="img-fluid" src="{{blog.blog_img}}" alt="" />
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3">Project Description</h3>
+            <h3 class="my-3">{{blog.blog_title}}</h3>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                viverra euismod odio, gravida pellentesque urna varius vitae.
-                Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.
-                Mauris ultricies, justo eu convallis placerat, felis enim.
+                {{blog.blog_content | slice:255}}...
             </p>
-            <h3 class="my-3">Project Details</h3>
+            <h6>By: {{blog.blog_author}}</h6>
+            {{blog.date_added}}
         </div>
     </div>
+    {%endfor%}
     <!-- /.row -->
 
     <!-- Related Projects Row -->

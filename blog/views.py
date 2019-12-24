@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import BlogsPost
 import datetime
 
 
 def index(request):
-    is_active = "active"
-    pg_title = "Home"
-    month = datetime.datetime.now().strftime("%B")
 
-    return render(request, "index.html", {"pg_title": pg_title, "home_is_active": is_active, "month": month})
+    month = datetime.datetime.now().strftime("%B")
+    all_data = BlogsPost.objects.all()
+   # latest_data = BlogsPost.objects.latest('date_added')
+    # print(all_data)
+    return render(request, "index.html", {"pg_title": 'Home', "home_is_active": 'active', "month": month, 'posts': all_data})
 
 
 def about(request):
@@ -21,3 +23,8 @@ def contact(request):
     is_active = "active"
     pg_title = "Contact Us"
     return render(request, "contact.html", {"pg_title": pg_title,  "con_is_active": is_active})
+
+
+def single(request):
+
+    return render(request, "single.html", {"pg_title": 'title'})
