@@ -1,2 +1,2 @@
 # djangoBlog
-djngoBlog is simple python blog project
+djangoBlog is simple python blog project
