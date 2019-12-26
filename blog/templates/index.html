@@ -15,8 +15,8 @@
     <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
-                <h1 class="display-3">Video Header</h1>
-                <p class="lead mb-0">With HTML5 Video and Bootstrap 4</p>
+                <h1 class="display-3">Django Blog</h1>
+                <p class="lead mb-0">:)</p>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
     </h1>
 
     <!-- Portfolio Item Row -->
-    {% for blog in posts%}
+    {% for blog in head_posts%}
     <div class="row">
         <div class="col-md-8">
             <img class="img-fluid" src="{{blog.blog_img}}" alt="" />
@@ -39,8 +39,14 @@
 
         <div class="col-md-4">
             <h3 class="my-3">{{blog.blog_title}}</h3>
-            <p>
-                {{blog.blog_content | slice:255}}...
+            <p style="text-align: justify;">
+                {{blog.blog_content | slice:276}}.....
+                <br />
+                <a
+                    href="#"
+                    style="text-decoration: underline; font-size: 16px; margin: 5px;"
+                    >Continue Reading...</a
+                >
             </p>
             <h6>By: {{blog.blog_author}}</h6>
             {{blog.date_added}}
@@ -50,48 +56,31 @@
     <!-- /.row -->
 
     <!-- Related Projects Row -->
-    <h3 class="my-4">Related Projects</h3>
-
+    <hr class="" />
+    <br />
+    <h3 class="my-4">You Might Also like these...</h3>
     <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img
-                    class="img-fluid"
-                    src="http://placehold.it/500x300"
-                    alt=""
-                />
-            </a>
+        {%for data in related_post%}
+
+        <div
+            class="card"
+            style="width: 18rem;padding: 10px; margin-right: 20px;margin-left: 50px;"
+        >
+            <img
+                src="{{data.blog_img}}"
+                class="card-img-top"
+                alt="..."
+                style="max-width: 100%; height:150px;"
+            />
+            <div class="card-body">
+                <h5 class="card-title">{{data.blog_title}}</h5>
+                <p class="card-text">{{data.blog_content |slice:100}}</p>
+                <a href="#" class="btn btn-primary">Continue Reading ...</a>
+            </div>
         </div>
 
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img
-                    class="img-fluid"
-                    src="http://placehold.it/500x300"
-                    alt=""
-                />
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img
-                    class="img-fluid"
-                    src="http://placehold.it/500x300"
-                    alt=""
-                />
-            </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href="#">
-                <img
-                    class="img-fluid"
-                    src="http://placehold.it/500x300"
-                    alt=""
-                />
-            </a>
-        </div>
+        {%endfor%}
+        <br />
     </div>
     <!-- /.row -->
 </div>

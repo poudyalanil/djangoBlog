@@ -7,10 +7,23 @@ import datetime
 def index(request):
 
     month = datetime.datetime.now().strftime("%B")
-    all_data = BlogsPost.objects.all()
-   # latest_data = BlogsPost.objects.latest('date_added')
-    # print(all_data)
-    return render(request, "index.html", {"pg_title": 'Home', "home_is_active": 'active', "month": month, 'posts': all_data})
+    all_data = list(BlogsPost.objects.all())
+
+    # getting latest blogs from the list all_data
+    latest_data = []
+    for data in all_data[-1:]:
+        latest_data.append(data)
+
+    # getting some blogs for recommendation part
+    related_post = []
+    for data in all_data[0:3]:
+        related_post.append(data)
+
+    return render(request, "index.html", {"pg_title": 'Home',
+                                          "home_is_active": 'active',
+                                          "month": month,
+                                          'head_posts': latest_data,
+                                          'related_post': related_post, })
 
 
 def about(request):
